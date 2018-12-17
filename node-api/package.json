@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "pretest": "eslint ."
+    "eslint": "eslint .",
+    "test": "./node_modules/.bin/mocha \"./{,!(node_modules)/**/}*.test.js\""
   },
   "keywords": [],
   "author": "",

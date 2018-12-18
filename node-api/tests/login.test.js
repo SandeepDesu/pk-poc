@@ -1,17 +1,13 @@
 'use strict';
-/* global it, describe, before, after*/
-var LoginController = require('../controllers/login');
-var mongoose = require('mongoose');
-var lc = new LoginController();
-/**
- * by connecting to db like this way to test controllers
- */
-describe('Testing Login Functionality', function() {
-  before(function() {
-    mongoose.connect('mongodb://localhost:27017/sample');
-  });
+/* global it, describe*/
+var should = require('should');
+var sinon = require('sinon');
 
-  it('Should login with valid credentials', function(done) {
+describe('Checking login functionality', function() {
+  it('Should login with invalid details', function() {
+    var schema = {
+      find: function(a, c) { c(null, [{ }]); },
+    };
     var req = {
       body: {
         username: 'sandeep',
@@ -19,15 +15,12 @@ describe('Testing Login Functionality', function() {
       },
     };
     var res = {
-      send: test,
+      send: sinon.spy(),
+      status: sinon.spy(),
     };
-    function test(value) {
-      done();
-    }
+    var LoginController = require('../controllers/login');
+    var lc = new LoginController(schema);
     lc.login(req, res);
-  });
-
-  after(function() {
-    mongoose.disconnect();
+    res.send.calledWith({ message: 'Invalid Password' }).should.equal(true);
   });
 });

@@ -8,7 +8,7 @@ function LoginController(schema) {
 
 LoginController.prototype.login = function(req, res) {
   um.login(req.body, function(err, result) {
-    err ? res.status(501).send(err) : res.send(result);
+    err ? res.status(501) && res.send(err) : res.send(result);
   });
 };
 

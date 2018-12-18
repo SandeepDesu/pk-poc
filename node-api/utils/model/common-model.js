@@ -29,7 +29,7 @@ CommonModel.prototype.login = function(data, c) {
     } else if (result.length && result.length === 1) {
       if (result[0].password === data.password) {
         var token = jwt.sign(JSON.stringify(result[0]), 'sample');
-        c(null, token);
+        c(null, { token: token, info: result[0] });
       } else {
         c(null, { message: 'Invalid Password' });
       }

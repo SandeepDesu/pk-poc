@@ -1,4 +1,7 @@
 'use strict';
+/**
+ * sample unit tests
+ */
 /* global it, describe*/
 var should = require('should');
 var sinon = require('sinon');
@@ -18,7 +21,7 @@ describe('Checking login functionality', function() {
       send: sinon.spy(),
       status: sinon.spy(),
     };
-    var LoginController = require('../controllers/login');
+    var LoginController = require('../../controllers/login');
     var lc = new LoginController(schema);
     lc.login(req, res);
     res.send.calledWith({ message: 'Invalid Password' }).should.equal(true);

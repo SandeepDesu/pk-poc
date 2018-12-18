@@ -1,5 +1,5 @@
 'use strict';
-var CommonModel = require('../models/common-model');
+var CommonModel = require('../utils/model/common-model');
 var um;
 
 function UserController(schema) {

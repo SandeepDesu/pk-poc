@@ -1,9 +1,9 @@
 'use strict';
-var UserModel = require('../models/users');
-var um = new UserModel();
+var CommonModel = require('../models/common-model');
+var um;
 
-function UserController() {
-
+function UserController(schema) {
+  um = new CommonModel(schema);
 }
 
 UserController.prototype.get = function(req, res) {
